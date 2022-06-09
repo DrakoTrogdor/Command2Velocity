@@ -1,0 +1,5 @@
+name: Command2Velocity
+version: '${version}'
+main: com.drakotrogdor.command2velocity.Command2VelocityPaper
+depend: [CommandAPI]
+api-version: 1.18

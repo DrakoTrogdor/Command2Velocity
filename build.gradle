@@ -1,0 +1,84 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'com.github.johnrengelman.shadow'
+    id 'org.jetbrains.gradle.plugin.idea-ext'
+}
+
+def getTimestamp() {
+    return new Date().format('yyyyMMddHHmmss')
+}
+
+group = 'com.drakotrogdor'
+version = '0.10.0-beta.1+' + getTimestamp()
+
+defaultTasks 'shadowJar'
+
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+    apply plugin: 'com.github.johnrengelman.shadow'
+    apply plugin: 'org.jetbrains.gradle.plugin.idea-ext'
+}
+
+subprojects {
+    group = parent.group
+    version = parent.version
+
+    def targetJavaVersion = 17
+    java {
+        def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
+        if (JavaVersion.current() < javaVersion) {
+            toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+            options.release = targetJavaVersion
+        }
+    }
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+}
+
+subprojects.each { subproject ->
+    evaluationDependsOn(subproject.path)
+}
+/*
+shadowJar {
+    dependsOn 'jar'
+    classifier ''
+    manifest.inheritFrom jar.manifest
+
+    configurations = [project.configurations.shadow]
+
+    subprojects.each { subproject ->
+        //from subproject.configurations.shadow.collect {
+        //    zipTree(it)
+        //}
+        from subproject.configurations.runtimeClasspath.collect{
+            zipTree(it)
+        }
+    }
+}*/
+
+shadowJar {
+    dependsOn 'jar'
+    classifier ''
+    manifest.inheritFrom jar.manifest
+    subprojects.each { subproject ->
+        from subproject.collect {it.tasks.shadowJar}
+    }
+}
+//tasks.build.dependsOn tasks.shadowJar

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "command2velocity-fabric",
+  "version": "${version}",
+  "name": "Command2Velocity",
+  "description": "Allows sending commands from a FabricMC server to to a Velocity server that it is connected to.",
+  "authors": [
+    "Casey J. Sullivan"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/Command2Velocity-fabric/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "com.drakotrogdor.command2velocity.Command2VelocityFabric"
+    ]
+  },
+  "mixins": [
+    "Command2Velocity-fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.7",
+    "fabric": ">=0.37.0+1.17",
+    "minecraft": "1.17.1"
+  }
+}
