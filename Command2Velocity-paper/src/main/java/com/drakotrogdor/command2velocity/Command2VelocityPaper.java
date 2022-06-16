@@ -16,6 +16,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
+import dev.jorel.commandapi.CommandAPI;
+import dev.jorel.commandapi.CommandAPIConfig;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.arguments.Argument;
 import dev.jorel.commandapi.arguments.EntitySelectorArgument;
@@ -123,8 +125,10 @@ public final class Command2VelocityPaper extends JavaPlugin implements Listener 
     @Override
     public void onLoad() {
         // Plugin loading logic
+        CommandAPI.onLoad(new CommandAPIConfig().silentLogs(true)); //Required for shadowed CommandAPI
+
         this.getLogger().info("Creating command: command2velocity");
-        List<Argument> cmdServerArguments = new ArrayList<>();
+        List<Argument<?>> cmdServerArguments = new ArrayList<>();
         cmdServerArguments.add(new EntitySelectorArgument("player", EntitySelectorArgument.EntitySelector.ONE_PLAYER));
         cmdServerArguments.add(new StringArgument("server"));
 
@@ -154,6 +158,8 @@ public final class Command2VelocityPaper extends JavaPlugin implements Listener 
     @Override
     public void onEnable() {
         // Plugin startup logic
+        CommandAPI.onEnable(this); //Required for shadowed CommandAPI
+
         // Load configuration
         config.addDefault("ForceSpawn",false);
         config.addDefault("SpawnX",-1);

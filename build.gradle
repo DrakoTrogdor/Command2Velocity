@@ -9,8 +9,8 @@ def getTimestamp() {
     return new Date().format('yyyyMMddHHmmss')
 }
 
-group = 'com.drakotrogdor'
-version = '0.10.0-beta.1+' + getTimestamp()
+group = project.maven_group
+version = project.mod_version + "+" + getTimestamp()
 
 defaultTasks 'shadowJar'
 
@@ -55,30 +55,14 @@ subprojects {
 subprojects.each { subproject ->
     evaluationDependsOn(subproject.path)
 }
-/*
+
 shadowJar {
     dependsOn 'jar'
     classifier ''
     manifest.inheritFrom jar.manifest
-
-    configurations = [project.configurations.shadow]
-
     subprojects.each { subproject ->
-        //from subproject.configurations.shadow.collect {
-        //    zipTree(it)
-        //}
-        from subproject.configurations.runtimeClasspath.collect{
-            zipTree(it)
+        from subproject.collect {
+            it.tasks.shadowJar
         }
     }
-}*/
-
-shadowJar {
-    dependsOn 'jar'
-    classifier ''
-    manifest.inheritFrom jar.manifest
-    subprojects.each { subproject ->
-        from subproject.collect {it.tasks.shadowJar}
-    }
 }
-//tasks.build.dependsOn tasks.shadowJar

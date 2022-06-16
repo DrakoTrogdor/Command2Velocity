@@ -3,8 +3,10 @@ plugins {
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow'// version '7.0.0'
     id 'org.jetbrains.gradle.plugin.idea-ext'// version "1.0.1"
-    id 'fabric-loom' version '0.10-SNAPSHOT'
+    id 'fabric-loom' version '0.12-SNAPSHOT'
 }
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 defaultTasks 'shadowJar'
 

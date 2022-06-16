@@ -1,5 +1,6 @@
-name: Command2Velocity
+name: ${name}
 version: '${version}'
-main: com.drakotrogdor.command2velocity.Command2VelocityPaper
-depend: [CommandAPI]
-api-version: 1.18
+main: ${main}
+depend: []
+api-version: ${apiversion}
+description: 'Allows server command blocks /console to transfer users between Velocity servers'
