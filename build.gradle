@@ -8,9 +8,17 @@ plugins {
 def getTimestamp() {
     return new Date().format('yyyyMMddHHmmss')
 }
+def getGitHash() {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
 
 group = project.maven_group
-version = project.mod_version + "+" + getTimestamp()
+version = project.mod_version + "+" + getTimestamp() + "+" + getGitHash()
 
 defaultTasks 'shadowJar'
 
