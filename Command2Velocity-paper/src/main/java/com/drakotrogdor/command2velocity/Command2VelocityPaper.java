@@ -20,6 +20,7 @@ import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIConfig;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.arguments.Argument;
+import dev.jorel.commandapi.arguments.EntitySelector;
 import dev.jorel.commandapi.arguments.EntitySelectorArgument;
 import dev.jorel.commandapi.arguments.StringArgument;
 
@@ -129,7 +130,7 @@ public final class Command2VelocityPaper extends JavaPlugin implements Listener 
 
         this.getLogger().info("Creating command: command2velocity");
         List<Argument<?>> cmdServerArguments = new ArrayList<>();
-        cmdServerArguments.add(new EntitySelectorArgument("player", EntitySelectorArgument.EntitySelector.ONE_PLAYER));
+        cmdServerArguments.add(new EntitySelectorArgument("player", EntitySelector.ONE_PLAYER));
         cmdServerArguments.add(new StringArgument("server"));
 
         new CommandAPICommand("command2velocity")
