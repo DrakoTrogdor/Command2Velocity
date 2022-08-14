@@ -3,6 +3,7 @@ plugins {
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow'
     id 'org.jetbrains.gradle.plugin.idea-ext'
+    id 'fabric-loom' version '0.12-SNAPSHOT' apply false
 }
 
 def getTimestamp() {
