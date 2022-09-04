@@ -33,7 +33,7 @@ processResources {
             version: project.version,
             name: rootProject.name,
             main: "${project.maven_group}.${project.archives_base_name}.${rootProject.name}Paper",
-            apiversion: project.minecraft_version
+            apiversion: project.spigotapi_version
     ]
     inputs.properties props
     expand props
