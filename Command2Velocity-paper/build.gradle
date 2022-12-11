@@ -23,7 +23,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly "io.papermc:paperlib:${project.paperlib_version}"
+    //compileOnly "io.papermc:paperlib:${project.paperlib_version}"
+    compileOnly "io.papermc.paper:paper-api:${project.paperapi_version}"
     compileOnly "org.spigotmc:spigot-api:${project.minecraft_version}-R0.1-SNAPSHOT"
     shadow "dev.jorel:commandapi-shade:${project.commandapi_version}"
 }
