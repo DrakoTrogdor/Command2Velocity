@@ -27,28 +27,34 @@ In summary, this plugin allows server administrators to send players to differen
 
 The in-game users can use the command2velocity command (or its alias c2v) to send players to different servers within the network. Here's a breakdown of the command syntax:
 
-Sending yourself to another server:
+1. Sending yourself to another server:
 
-> /command2velocity server <server>
-
-or using aliases:
-
-> /c2v srv <server>
-
-> /c2v serv <server>
-
-In this case, <server> should be replaced with the name of the server you want to connect to.
-
-Sending another player to a server:
-
-> /command2velocity server <player> <server>
+```
+/command2velocity server <server>
+```
 
 or using aliases:
 
-> /c2v srv <player> <server>
+```
+/c2v srv <server>
+/c2v serv <server>
+```
 
-> /c2v serv <player> <server>
+In this case, `<server>` should be replaced with the name of the server you want to connect to.
 
-In this case, <player> should be replaced with the name of the player you want to send, and <server> should be replaced with the name of the server you want to send the player to.
+2. Sending another player to a server:
 
-Note that players must have the necessary permissions to use the command. The permission for the command is command.command2velocity. Server administrators can configure the permissions using a permissions plugin, such as LuckPerms, to grant or restrict access to the command.
+```
+/command2velocity server <player> <server>
+```
+
+or using aliases:
+
+```
+/c2v srv <player> <server>
+/c2v serv <player> <server>
+```
+
+In this case, `<player>` should be replaced with the name of the player you want to send, and `<server>` should be replaced with the name of the server you want to send the player to.
+
+Note that players must have the necessary permissions to use the command. The permission for the command is `command.command2velocity`. Server administrators can configure the permissions using a permissions plugin, such as LuckPerms, to grant or restrict access to the command.
