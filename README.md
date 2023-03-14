@@ -22,3 +22,33 @@ Here's a brief overview of the code:
 7. `onPlayerJoin()` method is an event handler for when a player joins the server. It either forces the player to spawn at a specific location or starts a 10-second portal cooldown for the player.
 
 In summary, this plugin allows server administrators to send players to different servers within their network using a custom command while implementing a cooldown mechanism to prevent abuse. It also provides configuration options for server administrators to manage the plugin's behavior.
+
+# Usage
+
+The in-game users can use the command2velocity command (or its alias c2v) to send players to different servers within the network. Here's a breakdown of the command syntax:
+
+Sending yourself to another server:
+
+> /command2velocity server <server>
+
+or using aliases:
+
+> /c2v srv <server>
+
+> /c2v serv <server>
+
+In this case, <server> should be replaced with the name of the server you want to connect to.
+
+Sending another player to a server:
+
+> /command2velocity server <player> <server>
+
+or using aliases:
+
+> /c2v srv <player> <server>
+
+> /c2v serv <player> <server>
+
+In this case, <player> should be replaced with the name of the player you want to send, and <server> should be replaced with the name of the server you want to send the player to.
+
+Note that players must have the necessary permissions to use the command. The permission for the command is command.command2velocity. Server administrators can configure the permissions using a permissions plugin, such as LuckPerms, to grant or restrict access to the command.
