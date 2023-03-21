@@ -3,10 +3,11 @@ plugins {
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow'
     id 'org.jetbrains.gradle.plugin.idea-ext'
-    id 'fabric-loom' version '0.12-SNAPSHOT' apply false
+    id 'fabric-loom' version '1.1.10' apply false
+    id 'com.github.ben-manes.versions' version '0.46.0'
 }
 
-def getTimestamp() {
+static getTimestamp() {
     return new Date().format('yyyyMMddHHmmss')
 }
 def getGitHash() {
@@ -51,7 +52,7 @@ subprojects {
 
     tasks.withType(JavaCompile).configureEach {
         if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
-            options.release = targetJavaVersion
+            options.release.set(targetJavaVersion)
         }
     }
 
@@ -67,7 +68,7 @@ subprojects.each { subproject ->
 
 shadowJar {
     dependsOn 'jar'
-    classifier ''
+    //classifier ''
     manifest.inheritFrom jar.manifest
     subprojects.each { subproject ->
         from subproject.collect {

@@ -2,6 +2,7 @@ plugins {
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow'
     id 'org.jetbrains.gradle.plugin.idea-ext'
+    id 'com.github.ben-manes.versions'
     id 'java'
 }
 
@@ -23,9 +24,8 @@ repositories {
 }
 
 dependencies {
-    //compileOnly "io.papermc:paperlib:${project.paperlib_version}"
-    compileOnly "io.papermc.paper:paper-api:${project.paperapi_version}"
-    compileOnly "org.spigotmc:spigot-api:${project.minecraft_version}-R0.1-SNAPSHOT"
+    implementation "io.papermc.paper:paper-api:${project.paperapi_version}"
+    implementation "org.spigotmc:spigot-api:${project.minecraft_version}-R0.1-SNAPSHOT"
     shadow "dev.jorel:commandapi-shade:${project.commandapi_version}"
 }
 
@@ -46,11 +46,11 @@ processResources {
 
 shadowJar {
     dependsOn 'jar'
-    classifier ''
     manifest.inheritFrom jar.manifest
     configurations = [project.configurations.shadow]
     dependencies {
         include(dependency("dev.jorel:commandapi-shade:${project.commandapi_version}"))
+
     }
     relocate("dev.jorel.commandapi", "${project.maven_group}.commandapi")
 }

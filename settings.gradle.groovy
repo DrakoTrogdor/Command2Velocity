@@ -8,8 +8,8 @@ pluginManagement {
         }
     }
     plugins {
-        id 'com.github.johnrengelman.shadow' version '7.1.2'
-        id 'org.jetbrains.gradle.plugin.idea-ext' version '1.0.1'
+        id 'com.github.johnrengelman.shadow' version '8.1.1'
+        id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.7'
         id 'java'
     }
 }
