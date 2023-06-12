@@ -17,7 +17,7 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
 import dev.jorel.commandapi.CommandAPI;
-import dev.jorel.commandapi.CommandAPIConfig;
+import dev.jorel.commandapi.CommandAPIBukkitConfig;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.arguments.Argument;
 import dev.jorel.commandapi.arguments.EntitySelectorArgument;
@@ -125,7 +125,7 @@ public final class Command2VelocityPaper extends JavaPlugin implements Listener 
     @Override
     public void onLoad() {
         // Plugin loading logic
-        CommandAPI.onLoad(new CommandAPIConfig().silentLogs(true)); //Required for shadowed CommandAPI
+        CommandAPI.onLoad(new CommandAPIBukkitConfig(this).silentLogs(true)); //Required for shadowed CommandAPI
 
         this.getLogger().info("Creating command: command2velocity");
         List<Argument<?>> cmdServerArguments = new ArrayList<>();
@@ -139,7 +139,7 @@ public final class Command2VelocityPaper extends JavaPlugin implements Listener 
                 .withAliases("srv","serv")
                 .withArguments(new StringArgument("server"))
                 .executesPlayer((sender, args) -> {
-                    String server = (String) args[0];
+                    String server = (String) args.get(0);
                     sendPlayerToServer(sender, null, server);
                 })
             )
@@ -147,8 +147,8 @@ public final class Command2VelocityPaper extends JavaPlugin implements Listener 
                 .withAliases("srv","serv")
                 .withArguments(cmdServerArguments)
                 .executes((sender, args) -> {
-                    Player player = (Player) args[0];
-                    String server = (String) args[1];
+                    Player player = (Player) args.get(0);
+                    String server = (String) args.get(1);
                     sendPlayerToServer(sender, player, server);
                 })
             )
@@ -158,7 +158,7 @@ public final class Command2VelocityPaper extends JavaPlugin implements Listener 
     @Override
     public void onEnable() {
         // Plugin startup logic
-        CommandAPI.onEnable(this); //Required for shadowed CommandAPI
+        CommandAPI.onEnable();
 
         // Load configuration
         config.addDefault("ForceSpawn",false);

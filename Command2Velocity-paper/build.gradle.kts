@@ -26,7 +26,7 @@ repositories {
 dependencies {
     implementation("io.papermc.paper:paper-api:${project.extra["paperapi_version"]}")
     implementation("org.spigotmc:spigot-api:${project.extra["minecraft_version"]}-R0.1-SNAPSHOT")
-    shadow("dev.jorel:commandapi-shade:${project.extra["commandapi_version"]}")
+    shadow("dev.jorel:commandapi-bukkit-shade:${project.extra["commandapi_version"]}")
 }
 
 tasks.withType<Copy>().named("processResources") {
@@ -47,13 +47,10 @@ tasks.withType<Copy>().named("processResources") {
 tasks.shadowJar {
     dependsOn("jar")
     manifest.inheritFrom(tasks.jar.get().manifest)
-    configurations =
-    //configurations = mutableListOf(project.configurations.getByName("shadow").fileCollection())
-    val shadowConfig = project.configurations.getByName("shadow")
-    val shadowFiles = shadowConfig.files
+    configurations = listOf(project.configurations.getByName("shadow"))
 
     dependencies {
-        include(dependency("dev.jorel:commandapi-shade:${project.extra["commandapi_version"]}"))
+        include(dependency("dev.jorel:commandapi-bukkit-shade:${project.extra["commandapi_version"]}"))
     }
     relocate("dev.jorel.commandapi", "${project.extra["maven_group"]}.commandapi")
 }
