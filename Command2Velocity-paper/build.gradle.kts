@@ -25,7 +25,7 @@ repositories {
 
 dependencies {
     implementation("io.papermc.paper:paper-api:${project.extra["paperapi_version"]}")
-    implementation("org.spigotmc:spigot-api:${project.extra["minecraft_version"]}-R0.1-SNAPSHOT")
+    implementation("org.spigotmc:spigot-api:${project.extra["spigotapi_version"]}-R0.1-SNAPSHOT")
     shadow("dev.jorel:commandapi-bukkit-shade:${project.extra["commandapi_version"]}")
 }
 
