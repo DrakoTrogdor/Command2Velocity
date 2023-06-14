@@ -1,8 +1,12 @@
 name: ${name}
 version: '${version}'
 main: ${main}
-depend: []
 api-version: '${apiversion}'
 description: 'Allows server command blocks /console to transfer users between Velocity servers'
 website: 'https://www.sulltec.com'
-author: 'Drako Trogdor'
+authors: ['Drako Trogdor']
+contributors: ['Drako Trogdor']
+depend: []
+softdepend: []
+loadbefore: []
+provides: []
